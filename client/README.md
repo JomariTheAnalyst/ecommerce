@@ -1,36 +1,199 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Boys at the back - Client (Customer Storefront)
+
+E-commerce customer-facing application built with Next.js 15, React 19, and TypeScript.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Node.js** (v20 or higher) - [Download here](https://nodejs.org/)
+- **npm** (comes with Node.js) or **yarn** or **pnpm**
+- **Git** - [Download here](https://git-scm.com/)
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the Repository
+
+```bash
+git clone <repository-url>
+cd e-commerce-ui/client
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+If you encounter dependency conflicts, try:
+
+```bash
+npm install --legacy-peer-deps
+```
+
+### 3. Environment Setup
+
+Create a `.env.local` file in the `client` directory:
+
+```env
+# Add your environment variables here
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+
+### 4. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will start on [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open your browser and navigate to the URL above to see the storefront.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Available Scripts
 
-## Learn More
+### Development
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Starts the development server with Turbopack for fast refresh and hot module replacement.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Production Build
 
-## Deploy on Vercel
+```bash
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Creates an optimized production build of the application.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Start Production Server
+
+```bash
+npm start
+```
+
+Runs the production build. Must run `npm run build` first.
+
+### Linting
+
+```bash
+npm run lint
+```
+
+Runs ESLint to check for code quality issues.
+
+## Project Structure
+
+```
+client/
+├── src/
+│   ├── app/              # Next.js App Router pages
+│   │   ├── layout.tsx    # Root layout
+│   │   ├── page.tsx      # Homepage
+│   │   └── globals.css   # Global styles
+│   ├── components/       # React components
+│   │   ├── Navbar.tsx
+│   │   ├── Footer.tsx
+│   │   └── ...
+│   ├── stores/          # Zustand state management
+│   └── types.ts         # TypeScript type definitions
+├── public/              # Static assets (images, fonts)
+├── package.json
+├── tsconfig.json
+└── tailwind.config.ts
+```
+
+## Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **UI Library**: React 19
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4
+- **State Management**: Zustand
+- **Form Handling**: React Hook Form with Zod validation
+- **Icons**: Lucide React
+- **Notifications**: React Toastify
+
+## Key Features
+
+- Server-side rendering with Next.js App Router
+- Responsive design with Tailwind CSS
+- Type-safe development with TypeScript
+- Form validation with Zod schemas
+- Global state management with Zustand
+- Optimized images with Next.js Image component
+
+## Development Tips
+
+### Path Aliases
+
+Use the `@/*` alias to import from the `src` directory:
+
+```typescript
+import { Button } from '@/components/Button'
+import { useCartStore } from '@/stores/cartStore'
+```
+
+### Adding New Pages
+
+Create files in the `src/app` directory following Next.js App Router conventions:
+
+```
+src/app/products/page.tsx       → /products
+src/app/products/[id]/page.tsx  → /products/:id
+```
+
+### Styling
+
+Use Tailwind utility classes for styling:
+
+```tsx
+<div className="flex items-center gap-4 p-6 bg-white rounded-lg shadow-md">
+  {/* content */}
+</div>
+```
+
+## Troubleshooting
+
+### Port Already in Use
+
+If port 3000 is already in use, you can specify a different port:
+
+```bash
+npm run dev -- -p 3001
+```
+
+### Module Not Found Errors
+
+Clear Next.js cache and reinstall dependencies:
+
+```bash
+rm -rf .next node_modules
+npm install
+npm run dev
+```
+
+### TypeScript Errors
+
+Check your `tsconfig.json` and ensure all paths are correctly configured.
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Contributing
+
+1. Create a feature branch
+2. Make your changes
+3. Run `npm run lint` to check for issues
+4. Test your changes thoroughly
+5. Submit a pull request
+
+## License
+
+Private - All rights reserved
